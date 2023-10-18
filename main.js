@@ -79,3 +79,42 @@
 //     console.log(isi)
 //     p.innerHTML = isi
 // })
+
+document.addEventListener("DOMContentLoaded", function () {
+    addTaskButton.addEventListener("click", function () {
+        const taskText = taskInput.value.trim();
+        const listItem = document.createElement("li");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        const label = document.createElement("label");
+        label.textContent = taskText;
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "x";
+
+        listItem.appendChild(checkbox);
+        listItem.appendChild(label);
+        listItem.appendChild(removeButton);
+        taskList.appendChild(listItem);
+
+        listItem.style.display = "flex";
+        listItem.style.margin = "10px 0";
+        checkbox.style.marginRight = "30px";
+        removeButton.style.marginLeft = "30px";
+
+        taskInput.value = "";
+
+        checkbox.addEventListener("change", function () {
+            if (checkbox.checked) {
+                label.style.fontWeight = "bold";
+            } else {
+                label.style.fontWeight = "normal";
+            }
+        });
+
+        removeButton.addEventListener("click", function () {
+            taskList.removeChild(listItem);
+        });
+    });
+});
+
+
